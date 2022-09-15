@@ -6,6 +6,8 @@ import {ShoppingCart} from "../src/model/ShoppingCart"
 import {Teller} from "../src/model/Teller"
 import {SpecialOfferType} from "../src/model/SpecialOfferType"
 import {ProductUnit} from "../src/model/ProductUnit"
+import {ReceiptPrinter} from "../src/ReceiptPrinter";
+import {expect} from "chai";
 const approvals = require('approvals')
 
 type Approvals = {
@@ -31,8 +33,15 @@ describe('Supermarket', function () {
 
         const receipt: Receipt = teller.checksOutArticlesFrom(cart);
 
-        // Todo: complete this test
-        this.verifyAsJSON({})
+        // When
+        const receiptPrinter = new ReceiptPrinter();
+        const resultReceipt = receiptPrinter.printReceipt(receipt);
+
+        // Then
+        expect(resultReceipt).to.equals("apples                              4.98\n" +
+            "  1.99 * 2.500\n" +
+            "\n" +
+            "Total:                              4.98");
     });
 
 });
