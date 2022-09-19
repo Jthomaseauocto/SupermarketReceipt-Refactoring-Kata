@@ -4,6 +4,8 @@ import {Receipt} from "./model/Receipt"
 
 export class ReceiptPrinter {
 
+    // Testing commit
+
     public constructor(private readonly columns: number = 40) {
     }
 
